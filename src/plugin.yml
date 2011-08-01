@@ -1,0 +1,27 @@
+name: LoreTime
+author: SHiLLySiT
+main: me.SHiLLySiT.LoreTime.LoreTime
+version: 1.0.0
+description: >
+             LoreTime is a simple date plugin.
+commands:
+    loretime:
+      description: This is a demo command.
+      permission: loretime.user.loretime
+      usage: |
+             /<command>
+    loretime set:
+      description: Sets the time.
+      permission: loretime.admin.set
+      usage: |
+             /<command> [Month] [Day] [Year]
+    loretime save:
+      description: Manually saves the date to file.
+      permission: loretime.admin.save
+      usage: |
+             /<command>
+    loretime reload:
+      description: Reloads plugin settings without saving.
+      permission: loretime.admin.reload
+      usage: |
+             /<command>
