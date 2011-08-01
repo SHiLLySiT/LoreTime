@@ -1,15 +1,21 @@
 name: LoreTime
 author: SHiLLySiT
 main: me.SHiLLySiT.LoreTime.LoreTime
-version: 1.0.0
+version: 1.1.0
 description: >
              LoreTime is a simple date plugin.
 commands:
     loretime:
       description: This is a demo command.
+      aliases: lt
       permission: loretime.user.loretime
       usage: |
              /<command>
+    loretime time:
+      description: Returns the current Minecraft time.
+      permission: loretime.user.time
+      usage: |
+             /<command>  
     loretime set:
       description: Sets the time.
       permission: loretime.admin.set

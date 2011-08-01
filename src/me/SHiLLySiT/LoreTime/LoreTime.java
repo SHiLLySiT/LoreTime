@@ -56,9 +56,8 @@ public class LoreTime extends JavaPlugin {
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
-		
-		if(cmd.getName().equalsIgnoreCase("loretime")) {
-			
+
+		if(cmd.getName().equalsIgnoreCase("loretime"))  {
 			if(args.length == 0){
 				if (sender instanceof Player) { 
 					Player p = (Player) sender;
@@ -71,7 +70,22 @@ public class LoreTime extends JavaPlugin {
 					log.info(displayString());
 				}
 			}
-				
+			
+			if(args.length == 1 && args[0].equalsIgnoreCase("time")) {
+				if (sender instanceof Player) {
+					Player p = (Player) sender;
+					if(pc.doesHaveNode(p, "loretime.user.time")) {
+						saveConfig();
+						p.sendMessage(ChatColor.AQUA + "Time: " + server.getWorld(configWorld).getTime());
+					} else {
+						pc.sendInsufficientPermsMsg(p);
+					}
+				} else {
+					saveConfig();
+					log.info(logPrefix  + "Time: " + server.getWorld(configWorld).getTime());
+				}
+			}
+			
 			if(args.length == 1 && args[0].equalsIgnoreCase("save")) {
 				if (sender instanceof Player) {
 					Player p = (Player) sender;
