@@ -181,7 +181,7 @@ public class LoreTime extends JavaPlugin {
 	    if (debug) { log.info(LoreTime.logPrefix + "Days: " + configDays); }
 	    configCurrentDay = config.getInt("days.current", 0);
 	    if (debug) { log.info(LoreTime.logPrefix + "Current Day: " + configCurrentDay); }
-	    configDaysInAMonth = config.getInt("months.daysInAMonth", 30);
+	    configDaysInAMonth = config.getInt("months.daysInAMonth", 35);
 	    if (debug) { log.info(LoreTime.logPrefix + "Days in a Month: " + configDaysInAMonth); }
 	    
 	    if (debug) { log.info(logPrefix + "Loaded config values!"); } 
