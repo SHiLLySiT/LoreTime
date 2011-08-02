@@ -1,7 +1,7 @@
 name: LoreTime
 author: SHiLLySiT
 main: me.SHiLLySiT.LoreTime.LoreTime
-version: 1.1.0
+version: 1.1.1
 description: >
              LoreTime is a simple date plugin.
 commands:

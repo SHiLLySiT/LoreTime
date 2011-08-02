@@ -75,13 +75,11 @@ public class LoreTime extends JavaPlugin {
 				if (sender instanceof Player) {
 					Player p = (Player) sender;
 					if(pc.doesHaveNode(p, "loretime.user.time")) {
-						saveConfig();
 						p.sendMessage(ChatColor.AQUA + "Time: " + server.getWorld(configWorld).getTime());
 					} else {
 						pc.sendInsufficientPermsMsg(p);
 					}
 				} else {
-					saveConfig();
 					log.info(logPrefix  + "Time: " + server.getWorld(configWorld).getTime());
 				}
 			}

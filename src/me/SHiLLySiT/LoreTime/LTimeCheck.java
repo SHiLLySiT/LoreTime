@@ -6,7 +6,7 @@ public class LTimeCheck implements Runnable {
 	public static LoreTime plugin;
 	public static Server server = LoreTime.server;
 	public static String worldName = LoreTime.configWorld;
-	private int timer = 100;
+	private boolean handled = false;
 	
 	public LTimeCheck(LoreTime instance) {
 		plugin = instance;
@@ -21,13 +21,15 @@ public class LTimeCheck implements Runnable {
 		//time range is check instead of exact to ensure that it is caught
 		if (server.getWorld(worldName).getTime() > 17950 && server.getWorld(worldName).getTime() < 18050) {
 			
-			//timer keeps the date change from firing over and over again within the time range
-			if (timer < 100) { timer ++; } else {
+			//has the time already been checked?
+			if (!handled) {
+				
+				//flip flag so this doesnt happen again
+				handled = true;
 				
 				if (LoreTime.debug) { LoreTime.log.info(LoreTime.logPrefix + "Date Change!"); }
 				
-				timer = 0;
-				
+				//where the magic happens
 				if (LoreTime.configCurrentDay < (LoreTime.configDaysInAMonth - 1)) {
 					LoreTime.configCurrentDay++;
 				} else {
@@ -42,6 +44,9 @@ public class LTimeCheck implements Runnable {
 				if (LoreTime.configSaveOnDateChange) { LoreTime.saveConfig(); }
 			}
 			
+		} else {
+			//once outside of time range, reset handled flag
+			handled = false;
 		}
 	}
 }
