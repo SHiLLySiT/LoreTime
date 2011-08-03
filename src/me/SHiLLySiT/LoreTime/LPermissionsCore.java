@@ -7,9 +7,7 @@ import org.bukkit.plugin.Plugin;
 import com.nijiko.permissions.PermissionHandler;
 import com.nijikokun.bukkit.Permissions.Permissions;
 
-
 public class LPermissionsCore {
-
 	private PermissionHandler permissionHandler;
 	private boolean hasPermissions = false;
 
@@ -26,7 +24,7 @@ public class LPermissionsCore {
 	}
 
 	public void sendInsufficientPermsMsg(Player p){
-		p.sendMessage(ChatColor.RED + LoreTime.logPrefix + ("You do not have permissions to do this!"));
+		p.sendMessage(ChatColor.RED + "You do not have permissions to do this!");
 	}
 
 	public boolean doesHaveSuperNode(Player p, String node){
@@ -44,16 +42,16 @@ public class LPermissionsCore {
 	}
 
 	public void setupPermissions() {
-	      Plugin permissionsPlugin = LoreTime.server.getPluginManager().getPlugin("Permissions");
-	      if (this.permissionHandler == null) {
-	          if (permissionsPlugin != null) {
-	              this.permissionHandler = ((Permissions) permissionsPlugin).getHandler();
-	              hasPermissions = true;
-	              System.out.println(LoreTime.logPrefix + LoreTime.version + " - Permissions support enabled");
-	          } else {
-	        	  System.out.println(LoreTime.logPrefix + LoreTime.version + " - Permissions not detected.");
-	          }
-	      }
-	  }
+		  Plugin permissionsPlugin = LoreTime.server.getPluginManager().getPlugin("Permissions");
+		  if (this.permissionHandler == null) {
+		      if (permissionsPlugin != null) {
+		          this.permissionHandler = ((Permissions) permissionsPlugin).getHandler();
+		          hasPermissions = true;
+		          LLogger.info("Permissions support enabled");
+		  } else {
+			  LLogger.info("Permissions not detected.");
+		          }
+		      }
+		  }
 
 }
