@@ -1,1 +1,22 @@
 LoreTime is a date plugin geared towards RP servers. When a player issues the /loretime command, they are given the current in-game date which can be customized to fit the server's theme. Admins can adjust the date in-game as well as save/reload the config.
+
+CHANGELOG:
+Version 1.2.0
+-fixed other memory leak (doh!)
+-added interval option in config
+-added "th", "nd", etc after date numbers
+-code cleanup/comments
+-chat color (configurable) 
+-notify players on date change
+-notify on player login (optional)
+
+Version 1.1.1
+-fixed memory leak (let me know if it still persists)
+-removed config save when /lt time command was issued (oops)
+
+Version 1.1.0
+-added /lt alias
+-added /lt time which returns the current time
+
+Version 1.0.0
+-initial release
