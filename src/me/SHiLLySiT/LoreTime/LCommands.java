@@ -12,8 +12,58 @@ public class LCommands {
 	public LCommands(LoreTime instance) {
 	    this.plugin = instance;
 	}
-    
+	
+	private static String getTime() {
+		String returnString = "";
+		Long time = LoreTime.server.getWorld(LConfig.configWorld).getTime();
+		time += 1000; // add 1000 since MC time ranges from 0 - 23000
+		time /= 10; // last digit
+		
+		String sTime = time.toString();
+		String hour, minute;
+		
+		LLogger.info(time.toString());
+		if (time.toString().length() == 4) { // when hour is double digit
+			hour = sTime.substring(0, 2); // get hour
+			minute = sTime.substring(2); // get minute
+		} else { // when hour is single digit
+			char buffer = sTime.charAt(0); // get char at first position
+			hour = Character.toString(buffer); // get hour from char
+			minute = sTime.substring(1); // get minute
+		}
+		
+		// adds zero to front if minutes is a single digit
+		int buffer = (int) scale(Integer.parseInt(minute));
+		String minBuffer = Integer.toString(buffer);
+		if(Integer.toString(buffer).length()==1){
+			minBuffer = "0" + buffer;
+		}
+		
+		// determine am or pm
+		int hourBuffer = Integer.parseInt(hour);
+		if (LConfig.timeFormat == 12) { // 12 hour format
+			if (hourBuffer > 12) { 
+				hourBuffer -= 12;
+				returnString = hourBuffer + ":" + minBuffer + " pm";
+			} else {
+				returnString = hourBuffer + ":" + minBuffer + " am";
+			}
+		} else { // 24 hour format
+			hourBuffer -= 1;
+			returnString = hourBuffer + ":" + minBuffer;
+		}
+
+		return returnString;
+	}
+	
+	private static double scale(int value) {
+		return Math.floor(60 * (value / 100.0));
+	}
+	
     public static String displayString() {
+    	String string = LConfig.displayString;
+    	
+    	//add st, th, etc to day
 		Integer current = LConfig.configCurrentDay + 1;
 		String day = current + "th"; //takes are of days ending with 4 - 9 in one line
 		if(current.toString().endsWith("0") && current.toString().length() == 2) {day = current + "th";}
@@ -22,12 +72,25 @@ public class LCommands {
 		if(current.toString().endsWith("3")) {day = current + "rd";}
 		if(current.toString().startsWith("1") && current.toString().length() == 2){day = current + "th";}
 		
-		//TODO support user formatting
-		return LConfig.configDays.get(getWeekDay(LConfig.configCurrentDay)) + ", " + LConfig.configMonths.get(LConfig.configCurrentMonth) + " " + day + ", " + LConfig.configYear;
+		//dayofweek, month, daynum, year
+		//&W, &M &D, &Y
+		//return LConfig.configDays.get(getWeekDay(LConfig.configCurrentDay)) + ", " + LConfig.configMonths.get(LConfig.configCurrentMonth) + " " + day + ", " + LConfig.configYear;
+		String weekday = LConfig.configDays.get(getWeekDay(LConfig.configCurrentDay));
+		String month = LConfig.configMonths.get(LConfig.configCurrentMonth);
+		String year = LConfig.configYear.toString();
+		
+		//replace user string with date
+		string = string.replaceFirst("&W", weekday);
+		string = string.replaceFirst("&M", month);
+		string = string.replaceFirst("&D", day);
+		string = string.replaceFirst("&Y", year);
+		string = string.replaceFirst("&T", getTime());
+		
+		return string;
    }
 
    //magic function
-    private static int getWeekDay(int day) {
+    public static int getWeekDay(int day) {
 		int weekday = 0;
 		for (int i = 0; i < day; i++) {
 			if (weekday < (LConfig.configDays.size() - 1)) {
@@ -61,12 +124,12 @@ public class LCommands {
 				if (sender instanceof Player) {
 					Player p = (Player) sender;
 					if(pc.doesHaveNode(p, "loretime.user.time")) {
-						p.sendMessage(LConfig.color + "Time: " + LoreTime.server.getWorld(LConfig.configWorld).getTime());
+						p.sendMessage(LConfig.color + getTime());
 					} else {
 						pc.sendInsufficientPermsMsg(p);
 					}
 				} else {
-					LLogger.info("Time: " + LoreTime.server.getWorld(LConfig.configWorld).getTime());
+					LLogger.info(getTime());
 				}
 			}
 			
