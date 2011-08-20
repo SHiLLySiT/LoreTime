@@ -21,8 +21,11 @@ public class LConfig {
 	public static Boolean configNotifyOnJoin;
 	public static Integer configInterval;
 	public static String configColorString;
+	public static String displayString;
 	public static Boolean debug;
+	public static Integer timeFormat;
 	public static ChatColor color;
+	
 	
 	public static void init()
 	{
@@ -64,10 +67,14 @@ public class LConfig {
 	    if (debug) { LLogger.info("Interval: " + configInterval); }
 		configWorld = config.getString("options.worldname", "world");
 		if (debug) { LLogger.info("World Name: " + configWorld); }
+		displayString = config.getString("options.displayString", "&W, &M &D, &Y");
+		if (debug) { LLogger.info("Display String: " + displayString); }
 	    configSaveOnDateChange = config.getBoolean("options.saveOnDateChange", true);
 	    if (debug) { LLogger.info("Save on Date Change: " + configSaveOnDateChange); }
 	    configNotifyOnJoin = config.getBoolean("options.NotifyOnJoin", true);
 	    if (debug) { LLogger.info("Notify on Join: " + configNotifyOnJoin); }
+	    timeFormat = config.getInt("options.timeformat", 24);
+	    if (debug) { LLogger.info("Time Format: " + timeFormat); }
 	    
 		configYear = config.getInt("year.current", 0);
 		if (debug) { LLogger.info("Year: " + configYear); }
