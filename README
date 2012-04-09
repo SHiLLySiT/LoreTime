@@ -1,0 +1,54 @@
+LoreTime is a date plugin geared towards RP servers. When a player issues the /loretime command, they are given the current in-game date and time. The days, months, and years can by configured to fit any server's theme!
+
+CHANGELOG:
+Version 1.5.0
+- Updated for 1.2.4-R1.0
+- Added: setcolor command!
+- Added: togglehourformat command!
+- Added: nextday command!
+- Added: debug command!
+- Added: custom time for date change
+- Added: notify on date change option
+- Added: "calendars"
+- Changed: "set" command to "setdate"
+- Removed: single world limitation
+- Optimizations
+- Bug Fixes (permission issues, console errors, etc)
+
+Version 1.4.1
+- Updated for RB 1.1-R6
+
+Version 1.4.0
+- Fixed time scaling issue; sunrise is now 6am and sunset is 6pm.
+- New feature: ability to toggle day suffixes.
+- New feature: ability to modify day suffixes.
+
+Version 1.3.2
+- Fixed time conversion issue in 12 hour format
+
+Version 1.3.1
+- updated for Bukkit RB 1337
+
+Version 1.3.0
+- added time display
+- added custom string format
+
+Version 1.2.0
+- fixed other memory leak (doh!)
+- added interval option in config
+- added "th", "nd", etc after date numbers
+- code cleanup/comments
+- chat color (configurable) 
+- notify players on date change
+- notify on player login (optional)
+
+Version 1.1.1
+- fixed memory leak (let me know if it still persists)
+- removed config save when /lt time command was issued (oops)
+
+Version 1.1.0
+- added /lt alias
+- added /lt time which returns the current time
+
+Version 1.0.0
+- initial release

@@ -1,0 +1,68 @@
+name: LoreTime
+version: 1.5.0
+description: LoreTime is a RP date plugin.
+author: SHiLLySiT
+
+main: me.SHiLLySiT.LoreTime.LoreTime
+
+commands:
+    loretime:
+      description: Displays the current date.
+      aliases: [lt, lore]
+      permission: loretime.user.date
+      usage: /<command>
+    loretime time:
+      description: Returns the current Minecraft time.
+      permission: loretime.user.time
+      usage: /<command>  
+    loretime setdate:
+      description: Sets the time.
+      permission: loretime.admin.setdate
+      usage:  /<command> [Month] [Day] [Year]
+    loretime setcolor:
+      description: Sets the color of LoreTime messages.
+      permission: loretime.admin.setcolor
+      usage: /<command> [color]
+    loretime togglehourformat:
+      description: Toggles the hour format between 12-hour and 24-hour time.
+      permission: loretime.admin.togglehourformat
+      usage: /<command>
+    loretime nextday:
+      description: Moves the date forward one day.
+      permission: loretime.admin.nextday
+      usage: /<command>
+    loretime debug:
+      description: Turns debug messages on/off.
+      permission: loretime.admin.debug
+      usage: /<command>
+    loretime reload:
+      description: Reloads the plugin.
+      permission: loretime.admin.reload
+      usage:  /<command>
+      
+permissions:
+    loretime.*:
+        description: Gives access to all LoreTime commands.
+        children:
+            loretime.user.date: true
+            loretime.user.time: true
+            loretime.admin.setdate: true
+            loretime.admin.setcolor: true
+            loretime.admin.togglehourformat: true
+            loretime.admin.nextday: true
+            loretime.admin.debug: true
+            loretime.admin.reload: true
+    loretime.user.*:
+        description: Gives access to all user commands.
+        children:
+            loretime.user.date: true
+            loretime.user.time: true
+    loretime.admin.*:
+        description: Gives access to all admin commands.
+        children:
+            loretime.admin.setdate: true
+            loretime.admin.setcolor: true
+            loretime.admin.togglehourformat: true
+            loretime.admin.nextday: true
+            loretime.admin.debug: true
+            loretime.admin.reload: true
