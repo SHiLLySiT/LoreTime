@@ -19,16 +19,21 @@ public class Config {
 		plugin.getConfig().addDefault("options.debug", false);
 		plugin.getConfig().addDefault("options.color", "AQUA");
 		plugin.getConfig().addDefault("options.interval", 30);
+		Log.debug("interval: " + plugin.getConfig().getInt("options.interval"));
 		plugin.getConfig().addDefault("options.newdaytime", 18000);
+		Log.debug("newdaytime: " + plugin.getConfig().getInt("options.newdaytime"));
 		plugin.getConfig().addDefault("options.displayFormat", "&W, &M &D, &Y");
 		plugin.getConfig().addDefault("options.timeFormat", 24);
+		Log.debug("timeformat: " + plugin.getConfig().getInt("options.timeFormat"));
 		plugin.getConfig().addDefault("options.useDaySuffix", true);
 		String[] list = {"th", "st", "nd", "rd"};
 		plugin.getConfig().addDefault("options.daySuffixes", Arrays.asList(list));
 		
 		plugin.getConfig().addDefault("notifications.onJoin", true);
+		Log.debug("notifyOnJoin: " + plugin.getConfig().getBoolean("notifications.onJoin"));
 		plugin.getConfig().addDefault("notifications.onNewDay", true);
-		
+		Log.debug("notifyOnNewDay: " + plugin.getConfig().getBoolean("notifications.onNewDay"));
+
 		plugin.getConfig().addDefault("year.currentYear", 0);
 		
 		plugin.getConfig().addDefault("month.currentMonth", 0);
