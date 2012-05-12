@@ -17,7 +17,7 @@ public class Commands {
 		//note: alias of /loretime is /lt
 		if (cmd.getName().equalsIgnoreCase("loretime"))  {
 			//if no arguments, return date
-			if (args.length == 0){
+			if (args.length == 0) {
 				if (sender instanceof Player) { 
 					Player p = (Player) sender;
 					if (p.hasPermission("loretime.user.loretime")) {
@@ -28,10 +28,7 @@ public class Commands {
 				} else {
 					Log.info(displayString());
 				}
-			}
-			
-			// turns debug on/off
-			if (args.length == 1 && args[0].equalsIgnoreCase("debug")) {
+			} else if (args.length == 1 && args[0].equalsIgnoreCase("debug")) { // turns debug on/off
 				if (sender instanceof Player) {
 					Player p = (Player) sender;
 					if (p.hasPermission("loretime.admin.debug")) {
@@ -45,10 +42,7 @@ public class Commands {
 					Log.info("Debug Mode: " + Boolean.toString(plugin.config.getDebug()));
 				}
 				plugin.config.save();
-			}
-			
-			// reloads the plugin
-			if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+			} else if (args.length == 1 && args[0].equalsIgnoreCase("reload")) { // reloads the plugin
 				if (sender instanceof Player) {
 					Player p = (Player) sender;
 					if (p.hasPermission("loretime.admin.debug")) {
@@ -62,10 +56,7 @@ public class Commands {
 					Log.info("Reloaded data from config.yml!");
 				}
 				plugin.config.save();
-			}
-			
-			// toggle hour format
-			if (args.length == 1 && args[0].equalsIgnoreCase("togglehourformat")) {
+			} else if (args.length == 1 && args[0].equalsIgnoreCase("togglehourformat")) { // toggle hour format
 				if (sender instanceof Player) {
 					Player p = (Player) sender;
 					if (p.hasPermission("loretime.admin.togglehourformat")) {
@@ -79,10 +70,7 @@ public class Commands {
 					Log.info("Hour format set to " + plugin.config.getTimeFormat() + "-hour.");
 				}
 				plugin.config.save();
-			}
-			
-			// sets color of loretime messages
-			if(args.length == 2 && args[0].equalsIgnoreCase("setcolor")) {
+			} else if(args.length == 2 && args[0].equalsIgnoreCase("setcolor")) {// sets color of loretime messages
 				if (sender instanceof Player) {
 					Player p = (Player) sender;
 					if (p.hasPermission("loretime.admin.setcolor")) {
@@ -98,10 +86,7 @@ public class Commands {
 					plugin.config.setColor(args[1]);
 					Log.info("Display color set to " + plugin.config.getColor().name() + " by console.");
 				}
-			}
-			
-			// returns current server time
-			if(args.length == 1 && args[0].equalsIgnoreCase("time")) {
+			} else if(args.length == 1 && args[0].equalsIgnoreCase("time")) {// returns current server time
 				if (sender instanceof Player) {
 					Player p = (Player) sender;
 					if (p.hasPermission("loretime.user.time")) {
@@ -112,10 +97,7 @@ public class Commands {
 				} else {
 					Log.info(getTime());
 				}
-			}
-			
-			// goto next day
-			if (args.length == 1 && args[0].equalsIgnoreCase("nextday")) {
+			} else if (args.length == 1 && args[0].equalsIgnoreCase("nextday")) { // goto next day
 				if (sender instanceof Player) {
 					Player p = (Player) sender;
 					if (p.hasPermission("loretime.admin.nextday")) {
@@ -150,10 +132,7 @@ public class Commands {
 					Log.info("Date moved forward by console.");
 				}
 				plugin.config.save();
-			}
-			
-			//sets the date to the specified date
-			if (args.length == 4 && args[0].equalsIgnoreCase("setDate")) {
+			} else if (args.length == 4 && args[0].equalsIgnoreCase("setDate")) { //sets the date to the specified date
 				if (sender instanceof Player) { // if issues from player
 					Player p = (Player) sender;
 					if (p.hasPermission("loretime.admin.set")) {
@@ -188,8 +167,14 @@ public class Commands {
 					}
 				}
 				plugin.config.save();
+			} else {
+				if (sender instanceof Player) {
+					Player p = (Player) sender;
+					p.sendMessage(plugin.config.getColor() + "That's not a valid command!");
+				} else {
+					Log.info("That's not a valid command!");
+				}
 			}
-			
 			return true;
 		} 
 		return false; 
