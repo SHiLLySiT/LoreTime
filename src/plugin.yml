@@ -1,5 +1,5 @@
 name: LoreTime
-version: 1.5.0
+version: 1.5.1
 description: LoreTime is a RP date plugin.
 author: SHiLLySiT
 
@@ -16,7 +16,7 @@ commands:
       permission: loretime.user.time
       usage: /<command>  
     loretime setdate:
-      description: Sets the time.
+      description: Sets the date.
       permission: loretime.admin.setdate
       usage:  /<command> [Month] [Day] [Year]
     loretime setcolor:
