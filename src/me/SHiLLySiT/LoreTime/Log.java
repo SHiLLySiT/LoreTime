@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 
 
 public class Log {
-	@SuppressWarnings("unused")
 	private static LoreTime plugin;
 	public static Logger log =  Logger.getLogger("Minecraft");
 	public static String prefix;
@@ -15,11 +14,11 @@ public class Log {
         Log.log = newLog;
         prefix = "[LoreTime] ";
     }
-
-    public static Logger getLog() {
-        return log;
+    
+    public static void debug(String message) {
+        if (plugin.config.getDebug()) { log.info(prefix + message); }
     }
-
+    
     public static void info(String message) {
         log.info(prefix + message);
     }
@@ -39,4 +38,6 @@ public class Log {
     public static void log(Level level, String message) {
         log.log(level, prefix + message);
     }
+    
+    
 }
