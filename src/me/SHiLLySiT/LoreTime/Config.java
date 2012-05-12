@@ -12,29 +12,6 @@ public class Config {
 	    plugin = instance;
 	}
 	
-	//converts string from configFile to code
-	private ChatColor convertColor(String col)
-	{
-		ChatColor color = ChatColor.AQUA; // if color does not exist (or typo) default will be aqua
-		if (col.equalsIgnoreCase("BLACK")) { color = ChatColor.BLACK; }
-		else if (col.equalsIgnoreCase("DARK_BLUE")) { color = ChatColor.DARK_BLUE; }
-		else if (col.equalsIgnoreCase("DARK_GREEN")) { color = ChatColor.DARK_GREEN; }
-		else if (col.equalsIgnoreCase("DARK_AQUA")) { color = ChatColor.DARK_AQUA; }
-		else if (col.equalsIgnoreCase("DARK_RED")) { color = ChatColor.DARK_RED; }
-		else if (col.equalsIgnoreCase("DARK_PURPLE")) { color = ChatColor.DARK_PURPLE; }
-		else if (col.equalsIgnoreCase("GOLD")) { color = ChatColor.GOLD; }
-		else if (col.equalsIgnoreCase("DARK_GRAY")) { color = ChatColor.DARK_GRAY; }
-		else if (col.equalsIgnoreCase("BLUE")) { color = ChatColor.BLUE; }
-		else if (col.equalsIgnoreCase("GREEN")) { color = ChatColor.GREEN; }
-		else if (col.equalsIgnoreCase("AQUA")) { color = ChatColor.AQUA; }
-		else if (col.equalsIgnoreCase("RED")) { color = ChatColor.RED; }
-		else if (col.equalsIgnoreCase("LIGHT_PURPLE")) { color = ChatColor.LIGHT_PURPLE; }
-		else if (col.equalsIgnoreCase("YELLOW")) { color = ChatColor.YELLOW; }
-		else if (col.equalsIgnoreCase("WHITE")) { color = ChatColor.WHITE; }
-		
-		return color;
-	}
-	
 	public void loadDefaults()
 	{
 		plugin.getConfig().options().copyDefaults(true);
@@ -75,7 +52,7 @@ public class Config {
 	public boolean getDebug() { return plugin.getConfig().getBoolean("options.debug"); }
 	public void setDebug(boolean value) { plugin.getConfig().set("options.debug", value); }
 	// chat color
-	public ChatColor getColor() { return convertColor(plugin.getConfig().getString("options.color")); }
+	public ChatColor getColor() { return ChatColor.valueOf(plugin.getConfig().getString("options.color").toUpperCase()); }
 	public void setColor(String value) { plugin.getConfig().set("options.color", value); }
 	// interval between time checks
 	public int getInterval() { return plugin.getConfig().getInt("options.interval"); }
@@ -93,7 +70,6 @@ public class Config {
 	// day suffixes
 	public List<String> getDaySuffixes() { return plugin.getConfig().getStringList("options.daySuffixes"); }
 	public void setDaySuffixes(String value) { plugin.getConfig().set("options.daySuffixes", value.split(",")); } // TODO: test this
-	
 	
 	// notify on join
 	public boolean getNotifyOnJoin() { return plugin.getConfig().getBoolean("notifications.onJoin"); }
