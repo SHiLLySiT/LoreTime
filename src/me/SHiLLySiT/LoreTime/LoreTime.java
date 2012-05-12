@@ -17,14 +17,14 @@ public class LoreTime extends JavaPlugin {
 		
 		version = this.getDescription().getVersion();
 		listener = new PlayerListener(this);
+		commands = new Commands(this);
 		
 		config = new Config(this);
 		config.loadDefaults();
 		
-		this.commands = new Commands(this);
 	    //For reference:
 	    //300 * 20L = 300 seconds (1L = 1 tick, 20 ticks per second)
-		this.timeCheck = new TimeCheck(this);
+		timeCheck = new TimeCheck(this);
 	    this.getServer().getScheduler().scheduleAsyncRepeatingTask(this, this.timeCheck, 20L * 5, 20L * config.getInterval());
 	    
 	    Log.info("version " + version + " is enabled!");
@@ -32,7 +32,7 @@ public class LoreTime extends JavaPlugin {
 	
 	public void onDisable() {
 		config.save();
-		Log.info(" has been disabled!");
+		Log.info("has been disabled!");
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
