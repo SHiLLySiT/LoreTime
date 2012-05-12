@@ -199,7 +199,7 @@ public class Commands {
  		String returnString = "";
  		Long time = plugin.getServer().getWorld("world").getTime();
  		
- 		if (plugin.config.getDebug()) { Log.info("Raw Time: " + time.toString()); }
+ 		Log.debug("Raw Time: " + time.toString());
  		
  		time += 1000; // add 1000 since MC time ranges from 0 - 23000
  		time /= 10; // cut off last zero
@@ -208,7 +208,7 @@ public class Commands {
  			time = time - 2400; // set time to the difference
  		}
  		
- 		if (plugin.config.getDebug()) { Log.info("Unformatted Time: " + time.toString()); }
+ 		Log.debug("Unformatted Time: " + time.toString());
  		
  		String sTime = time.toString();
  		String hour, minute;
@@ -224,7 +224,7 @@ public class Commands {
  			minute = sTime; 
  		}
  		
- 		if (plugin.config.getDebug()) { Log.info("hour:" + hour + " minute:" + minute); }
+ 		Log.debug("hour:" + hour + " minute:" + minute);
  		
  		// scale minutes 
  		int buffer = (int) scale(Integer.parseInt(minute));
