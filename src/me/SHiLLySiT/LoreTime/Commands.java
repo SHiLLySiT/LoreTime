@@ -186,12 +186,9 @@ public class Commands {
  		
  		Log.debug("Raw Time: " + time.toString());
  		
- 		time += 1000; // add 1000 since MC time ranges from 0 - 23000
- 		time /= 10; // cut off last zero
- 		time += 500; // time offset
- 		if (time >= 2400) {
- 			time = time - 2400; // set time to the difference
- 		}
+ 		// add 1000 since MC time ranges from 0 - 23000, cut off last zero, time offset
+ 		time = ((time + 1000) / 10) + 500;
+ 		time = (time >= 2400) ? time - 2400 : time; // set time to the difference
  		
  		Log.debug("Unformatted Time: " + time.toString());
  		
@@ -214,7 +211,7 @@ public class Commands {
  		// scale minutes 
  		int buffer = (int) scale(Integer.parseInt(minute));
  		String minBuffer = Integer.toString(buffer);
- 		if (minBuffer.length() == 1) { minBuffer = "0" + minBuffer; }
+ 		minBuffer = (minBuffer.length() == 1) ? "0" + minBuffer : minBuffer;
  		
  		// determine am or pm
  		int hourBuffer = Integer.parseInt(hour);
@@ -225,11 +222,7 @@ public class Commands {
  				if (hourBuffer > 12) { hourBuffer -= 12; } // otherwise 12pm becomes 1pm
  				returnString = hourBuffer + ":" + minBuffer + " pm";
  			} else {
- 				if (hourBuffer == 0) { 
- 					returnString = "12:" + minBuffer + " am";
- 				} else {
- 					returnString = hourBuffer + ":" + minBuffer + " am";
- 				}
+ 				returnString = (hourBuffer == 0) ? "12:" + minBuffer + " am" : hourBuffer + ":" + minBuffer + " am";
  			}
  		}
 
@@ -241,19 +234,17 @@ public class Commands {
  	}
  	
      public String displayString() {
-     	String string = plugin.config.getDisplayFormat();
-     	
      	// credit to Vaquxine of Lord of the Craft for the following day suffix generator 
      	String day;
      	Integer current = plugin.config.getCurrentDay() + 1;
      	if (plugin.config.getUseDaySuffix()) {
  	    	//add st, th, etc to day
  			day = current + plugin.config.getDaySuffixes().get(0); //takes are of days ending with 4 - 9 in one line
- 			if(current.toString().endsWith("0") && current.toString().length() == 2) {day = current + plugin.config.getDaySuffixes().get(0);}
- 			if(current.toString().endsWith("1")) {day = current + plugin.config.getDaySuffixes().get(1);}
- 			if(current.toString().endsWith("2")) {day = current + plugin.config.getDaySuffixes().get(2);}
- 			if(current.toString().endsWith("3")) {day = current + plugin.config.getDaySuffixes().get(3);}
- 			if(current.toString().startsWith("1") && current.toString().length() == 2){day = current + plugin.config.getDaySuffixes().get(0);}
+ 			if(current.toString().endsWith("0") && current.toString().length() == 2) {day = current + plugin.config.getDaySuffixes().get(0); }
+ 			if(current.toString().endsWith("1")) { day = current + plugin.config.getDaySuffixes().get(1); }
+ 			if(current.toString().endsWith("2")) { day = current + plugin.config.getDaySuffixes().get(2); }
+ 			if(current.toString().endsWith("3")) { day = current + plugin.config.getDaySuffixes().get(3); }
+ 			if(current.toString().startsWith("1") && current.toString().length() == 2) { day = current + plugin.config.getDaySuffixes().get(0); }
      	} else {
      		day = current.toString();
      	}
@@ -266,6 +257,7 @@ public class Commands {
  		String year = Integer.toString(plugin.config.getCurrentYear());
  		
  		//replace user string with date
+     	String string = plugin.config.getDisplayFormat();
  		string = string.replaceFirst("&W", weekday);
  		string = string.replaceFirst("&M", month);
  		string = string.replaceFirst("&D", day);
@@ -279,11 +271,7 @@ public class Commands {
     public int getWeekDay(int day) {
  		int weekday = 0;
  		for (int i = 0; i < day; i++) {
- 			if (weekday < (plugin.config.getDayNames().size() - 1)) {
- 				weekday++;
- 			} else {
- 				weekday = 0;
- 			}
+ 			weekday = (weekday < (plugin.config.getDayNames().size() - 1)) ? weekday + 1 : 0;
  		}
  		return weekday;
  	}
