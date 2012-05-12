@@ -15,9 +15,9 @@ public class TimeCheck implements Runnable {
 	
 	@Override
 	public void run() {
-		if (plugin.config.getDebug()) { Log.log.info("Checking time..."); }
+		Log.debug("Checking time...");
 		
-		//time range is check instead of exact to ensure that it is caught
+		//time range to check instead of exact to ensure that it is caught
 		if (plugin.getServer().getWorld("world").getTime() > (plugin.config.getNewDayTime() - plugin.config.getInterval() * 20) && plugin.getServer().getWorld("world").getTime() < (plugin.config.getNewDayTime() + plugin.config.getInterval() * 20)) {
 			
 			//has the time already been checked?
@@ -26,7 +26,7 @@ public class TimeCheck implements Runnable {
 				//flip flag so this doesn't happen again
 				handled = true;
 				
-				if (plugin.config.getDebug()) { Log.log.info("Date Change!"); }
+				Log.debug("Date Change!");
 				
 				//where the magic happens
 				if (plugin.config.getCurrentDay() <= (plugin.config.getDaysPerMonth() - 2)) {
@@ -42,16 +42,16 @@ public class TimeCheck implements Runnable {
 				}
 				plugin.config.save();
 				
-				if (plugin.config.getDebug()) { Log.log.info(plugin.commands.displayString()); }
+				Log.debug(plugin.commands.displayString());
 				
 				//notify all plays on date change
 				for (Player player : plugin.getServer().getOnlinePlayers()){
-					if(player != null){
+					if (player != null){
 						player.sendMessage(plugin.config.getColor() + plugin.commands.displayString());
 					}
 				}
 			} else {
-				if (plugin.config.getDebug()) { Log.log.info("Already changed date!"); }
+				Log.debug("Already changed date!");
 			}
 			
 		} else {
