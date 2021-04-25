@@ -180,7 +180,7 @@ public class Commands {
 		return false; 
 	}
     
- 	private String getTime() {
+ 	public String getTime() {
  		String returnString = "";
  		Long time = plugin.getServer().getWorld("world").getTime();
  		

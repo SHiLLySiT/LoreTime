@@ -33,7 +33,7 @@ public class PlayerListener implements Listener {
             Block block = event.getClickedBlock();
             Player player = event.getPlayer();
             // note: blocks will never have a type of Material.SIGN
-            if (block.getType().equals(Material.SIGN_POST) || block.getType().equals(Material.WALL_SIGN)) {
+            if (block.getType().equals(Material.LEGACY_SIGN_POST) || block.getType().equals(Material.LEGACY_WALL_SIGN)) {
                 Sign sign = (Sign) block.getState();
                 if (sign.getLine(0).equalsIgnoreCase("[calendar]")) {
                 	player.sendMessage(plugin.config.getColor() + plugin.commands.displayString());

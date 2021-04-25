@@ -1,7 +1,8 @@
 name: LoreTime
 version: 1.5.1
 description: LoreTime is a RP date plugin.
-author: SHiLLySiT
+authors: [SHiLLySiT,Lorenzo0111]
+depend: [PlaceholderAPI]
 
 main: me.SHiLLySiT.LoreTime.LoreTime
 
