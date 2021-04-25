@@ -32,6 +32,30 @@ public class PlaceholderProvider extends PlaceholderExpansion {
         if(identifier.equals("time")){
             return plugin.commands.getTime();
         }
+        
+        if (identifier.equals("minute")) {
+        	return plugin.commands.getMinute();
+        }
+        
+        if (identifier.equals("hour")) {
+        	return plugin.commands.getHour();
+        }
+        
+        if (identifier.equals("day_name")) {
+        	return plugin.commands.getDayName();
+        }
+        
+        if (identifier.equals("day")) {
+        	return plugin.commands.getDay();
+        }
+        
+        if (identifier.equals("month")) {
+        	return plugin.commands.getMonth();
+        }
+        
+        if (identifier.equals("year")) {
+        	return plugin.commands.getYear();
+        }
 
         return null;
     }

@@ -26,6 +26,7 @@ public class PlayerListener implements Listener {
     	if (plugin.config.getNotifyOnJoin()) { p.sendMessage(plugin.config.getColor() + plugin.commands.displayString()); }
     }
     
+    @SuppressWarnings("deprecation")
     @EventHandler 
     public void OnPLayerClick(PlayerInteractEvent event)
     {
