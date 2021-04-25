@@ -1,6 +1,5 @@
-package me.lorenzo0111.hook;
+package me.SHiLLySiT.LoreTime;
 
-import me.SHiLLySiT.LoreTime.LoreTime;
 import org.bukkit.OfflinePlayer;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -14,7 +13,7 @@ public class PlaceholderProvider extends PlaceholderExpansion {
 
 	@Override
 	public String getAuthor() {
-		return "Lorenzo0111";
+		return "SHiLLySiT";
 	}
 
 	@Override
