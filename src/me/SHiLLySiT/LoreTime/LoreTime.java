@@ -27,6 +27,8 @@ public class LoreTime extends JavaPlugin {
 		timeCheck = new TimeCheck(this);
 	    this.getServer().getScheduler().scheduleAsyncRepeatingTask(this, this.timeCheck, 20L * 5, 20L * config.getInterval());
 	    
+	    new PlaceholderProvider(this).register();
+	    
 	    Log.info("version " + version + " is enabled!");
 	}
 	

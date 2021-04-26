@@ -180,31 +180,53 @@ public class Commands {
 		return false; 
 	}
     
- 	private String getTime() {
- 		String returnString = "";
+    private String getRawTime() {
  		Long time = plugin.getServer().getWorld("world").getTime();
- 		
- 		Log.debug("Raw Time: " + time.toString());
  		
  		// add 1000 since MC time ranges from 0 - 23000, cut off last zero, time offset
  		time = ((time + 1000) / 10) + 500;
  		time = (time >= 2400) ? time - 2400 : time; // set time to the difference
- 		
- 		Log.debug("Unformatted Time: " + time.toString());
- 		
- 		String sTime = time.toString();
- 		String hour, minute;
- 		
- 		if (sTime.length() == 4) {        // 4 digits
- 			hour = sTime.substring(0, 2);     // get hour
- 			minute = sTime.substring(2, 4);   // get minute
+ 		return time.toString();
+    }
+    
+    public String getHour() {
+    	String hour;
+ 		final String sTime = this.getRawTime();
+    	
+ 		if (sTime.length() == 4) {
+ 			hour = sTime.substring(0, 2);
  		} else if (sTime.length() == 3) { // 3 digits
  			hour = sTime.substring(0, 1); 
- 			minute = sTime.substring(1, 3); 
  		} else {                          // 2 or less digits
- 			hour = "0"; 
- 			minute = sTime; 
+ 			hour = "0";
  		}
+ 		
+    	return hour;
+    }
+    
+    public String getMinute() {
+ 		String minute;
+ 		final String time = this.getRawTime();
+ 		
+ 		if (time.length() == 4) {        // 4 digits
+ 			minute = time.substring(2, 4);   // get minute
+ 		} else if (time.length() == 3) { // 3 digits
+ 			minute = time.substring(1, 3); 
+ 		} else {                          // 2 or less digits
+ 			minute = time; 
+ 		}
+ 		
+ 		return minute;
+    }
+    
+ 	public String getTime() {
+ 		String returnString = "";
+ 		final String time = this.getRawTime();
+ 		
+ 		Log.debug("Unformatted Time: " + time);
+ 		
+ 		String hour = this.getHour();
+ 		String minute = this.getMinute();
  		
  		Log.debug("hour:" + hour + " minute:" + minute);
  		
@@ -275,4 +297,20 @@ public class Commands {
  		}
  		return weekday;
  	}
+
+	public String getDayName() {     	
+		return plugin.config.getDayNames().get(getWeekDay(plugin.config.getCurrentDay()));
+	}
+	
+	public String getDay() {
+		return Integer.toString(plugin.config.getCurrentDay());
+	}
+
+	public String getYear() {
+		return Integer.toString(plugin.config.getCurrentYear());
+	}
+
+	public String getMonth() {
+		return plugin.config.getMonthNames().get(plugin.config.getCurrentMonth());
+	}
 }
